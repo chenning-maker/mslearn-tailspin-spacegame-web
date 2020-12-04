@@ -12,15 +12,14 @@ pool:
   - npm
 
 variables:
-
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@1
-displayName: 'Use .NET Core SDK 3.1.300'
-inputs:
-      packageType: sdk
-      version: 3.1.300
+- task: UseDotNet@2
+  displayName: 'Use .NET Core SDK 3.1.300'
+  inputs:
+    packageType: sdk
+    version: 3.1.300
 
 - task: Npm@1
   displayName: 'Run npm install'
@@ -49,6 +48,3 @@ inputs:
     command: 'build'
     arguments: '--no-restore --configuration Release'
     projects: '**/*.csproj'
-
-
-    
